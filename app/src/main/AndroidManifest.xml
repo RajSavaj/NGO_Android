@@ -16,20 +16,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NgoHistory"></activity>
+        <activity android:name=".Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NgoHistory" />
         <activity android:name=".FoodVerfiedRestaunt" />
         <activity android:name=".ItemView" />
         <activity
             android:name=".Ngo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Register" />
-        <activity android:name=".Login">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Login"/>
         <activity
             android:name=".FoodArea"
             android:theme="@style/AppTheme.NoActionBar" />
