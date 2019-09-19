@@ -20,8 +20,8 @@ import retrofit2.http.Part;
 import retrofit2.http.PartMap;
 
 public interface API {
-    String BASE_URL = "http://jaishreekrishna.me/NGO/public/api/";// http://192.160.11.8:8080/api/v1/
-    String IMG_URL="http://jaishreekrishna.me/NGO/public/image/";
+    String BASE_URL = "http://jaishreekrishna.me/NgoFood/public/api/";// http://192.160.11.8:8080/api/v1/
+    String IMG_URL="http://jaishreekrishna.me/NgoFood/public/image/";
 
     @Multipart
     @POST("register")
@@ -47,8 +47,9 @@ public interface API {
     @POST("updateQty")
     Call<String> updateqty(@Field("Id") String rid,@Field("Qty") String uqty);
 
-    @POST("getRestaurants")
-    Call<List<Restorent>> getRestaurants();
+    @FormUrlEncoded
+        @POST("getRestaurants")
+    Call<List<Restorent>> getRestaurants(@Field("Id") String lat,@Field("Qty") String lang);
 
     @FormUrlEncoded
     @POST("todayItemDetail")

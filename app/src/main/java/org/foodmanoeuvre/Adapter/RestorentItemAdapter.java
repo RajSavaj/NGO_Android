@@ -101,16 +101,17 @@ public class RestorentItemAdapter extends RecyclerView.Adapter<RestorentItemAdap
             itemimage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showDialog();
+                    showDialog(getAdapterPosition());
                 }
             });
 
         }
     }
 
-    public void showDialog()
+    public void showDialog(final int pos)
     {
-        Dialog dialog = new Dialog(context);
+        final Restorent r=restorentList.get(pos);
+        Dialog dialog = new Dialog(context,android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialogmap);
         dialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
@@ -124,9 +125,8 @@ public class RestorentItemAdapter extends RecyclerView.Adapter<RestorentItemAdap
             @Override
             public void onMapReady(GoogleMap googleMap) {
                 mMap = googleMap;
-
-                LatLng sydney = new LatLng(12.9582317, 77.7087284);
-                mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
+                LatLng sydney = new LatLng(Double.parseDouble(r.getLatt()), Double.parseDouble(r.getLang()));
+                mMap.addMarker(new MarkerOptions().position(sydney).title(r.getName()));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(sydney,10F));
             }
         });

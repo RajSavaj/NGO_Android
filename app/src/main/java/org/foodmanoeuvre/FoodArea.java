@@ -53,7 +53,7 @@ public class FoodArea extends AppCompatActivity {
     CircleImageView profileimg;
     TextView textname;
     EditText txtitem,txtqty,txttime;
-    ImageView itemig,imgnoti;
+    ImageView itemig,imgnoti,imglogout;
     Button btnadd;
 
     Bitmap itemage=null;
@@ -79,6 +79,7 @@ public class FoodArea extends AppCompatActivity {
         btnadd=findViewById(R.id.itemadd);
         recycleritem=findViewById(R.id.recitem);
         imgnoti=findViewById(R.id.notification);
+        imglogout=findViewById(R.id.logout);
 
         recycleritem.setLayoutManager(new LinearLayoutManager(this));
         session=new SessionManagement(FoodArea.this);
@@ -112,11 +113,17 @@ public class FoodArea extends AppCompatActivity {
         itemig.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                intent.putExtra("return-data", true);
-                startActivityForResult(intent, 200);
+                Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                getIntent.setType("image/*");
+
+
+                Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickIntent.setType("image/*");
+
+                Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+                startActivityForResult(Intent.createChooser(chooserIntent, "Select Picture"), 200);
             }
         });
 
@@ -129,11 +136,18 @@ public class FoodArea extends AppCompatActivity {
                 }
             }
         });
+
         imgnoti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(getApplicationContext(),FoodVerfiedRestaunt.class);
                 startActivity(i);
+            }
+        });
+        imglogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                session.logoutUser();
             }
         });
         getTodayFood();

@@ -32,6 +32,7 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        getSupportActionBar().hide();
         login=findViewById(R.id.btnlogin);
         txtemail=findViewById(R.id.txtemail);
         txtpass=findViewById(R.id.txtpass);
@@ -67,7 +68,7 @@ public class Login extends AppCompatActivity {
             }
         });
         txtregres.setText(Html.fromHtml("<u>FoodArea Registration</u>"));
-        txtregngo.setText(Html.fromHtml("<u>NGO Registration</u>"));
+        txtregngo.setText(Html.fromHtml("<u>Ngo Registration</u>"));
 
 
     }

@@ -13,13 +13,13 @@
 
     <stroke
         android:width="2dp"
-        android:color="#000000">
+        android:color="#ff8000">
     </stroke>
 
     <padding
         android:top="0dp"
-        android:right="10dp"
-        android:left="10dp"
+        android:right="20dp"
+        android:left="20dp"
         android:bottom="0dp">
     </padding>
 

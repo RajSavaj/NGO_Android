@@ -21,6 +21,7 @@ public class SessionManagement {
     }
 
     public void createLoginSession(HashMap<String, String> map){
+        editor.putBoolean("IS_LOGIN", true);
         editor.putString("uid",map.get("uid"));
         editor.putString("Name",map.get("Name"));
         editor.putString("type",map.get("type"));
@@ -36,6 +37,7 @@ public class SessionManagement {
         editor.putString("url",map.get("url"));
         editor.commit();
     }
+
 
     public boolean isLoggedIn(){
         return pref.getBoolean("IS_LOGIN", false);

@@ -5,87 +5,76 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/background"
     tools:context=".Login">
    <LinearLayout
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
        android:layout_centerVertical="true"
-       android:paddingBottom="100dp"
+       android:paddingBottom="50dp"
        android:orientation="vertical">
        <TextView
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Login"
+           android:text="Free Food"
            android:textAlignment="center"
-           android:textColor="@color/white"
            android:layout_marginBottom="20dp"
-           android:textStyle="bold"
-           android:textSize="35dp"
-           android:shadowColor="#000"
-           android:shadowDx="1"
-           android:shadowDy="1"
-           android:shadowRadius="5"/>
+           android:fontFamily="@font/fredokaone"
+           android:textColor="#333366"
+           android:textSize="50dp"/>
        <EditText
            android:id="@+id/txtemail"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_margin="10dp"
-           android:background="@drawable/shapeemail"
-           android:drawableLeft="@drawable/ic_person"
-           android:drawablePadding="10dp"
            android:hint="Email"
+           android:fontFamily="@font/sriracha"
+           app:backgroundTint="@color/colorPrimary"
            android:padding="15dp"
-           android:textColor="@color/white"
-           android:textColorHighlight="@color/white"
-           android:textColorHint="@color/white" />
+           />
 
        <EditText
            android:id="@+id/txtpass"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:layout_margin="10dp"
-           android:background="@drawable/shapeemail"
-           android:drawableLeft="@drawable/ic_lock"
-           android:drawablePadding="10dp"
            android:hint="Password"
+           android:fontFamily="@font/sriracha"
+           app:backgroundTint="@color/colorPrimary"
            android:inputType="textPassword"
-           android:padding="15dp"
-           android:textColor="@color/white"
-           android:textColorHighlight="@color/white"
-           android:textColorHint="@color/white" />
+           android:padding="15dp" />
        <Button
            android:id="@+id/btnlogin"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
-           android:text="Log In"
+           android:text="Connect"
            android:shadowColor="@android:color/transparent"
            android:padding="15dp"
            android:layout_marginRight="10dp"
            android:layout_marginLeft="10dp"
            android:layout_marginBottom="10dp"
            android:layout_marginTop="20dp"
-           android:textSize="20dp"
+           android:textSize="17dp"
+           android:textColor="@color/white"
            android:background="@drawable/shapelogin"/>
        <TextView
            android:id="@+id/foodarea"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:textAlignment="center"
-           android:textColor="@color/white"
            android:layout_marginTop="12dp"
            android:textStyle="bold"
-           android:textSize="20dp"
+           android:fontFamily="@font/sriracha"
+           android:textSize="@dimen/textsize"
            android:text="FoodArea Registration"/>
        <TextView
            android:id="@+id/ngoreg"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:textAlignment="center"
-           android:textColor="@color/white"
            android:layout_marginTop="10dp"
            android:textStyle="bold"
-           android:textSize="20dp"
-           android:text="NGO Registration"/>
+           android:fontFamily="@font/sriracha"
+           android:textSize="@dimen/textsize"
+           android:text="Ngo Registration"/>
    </LinearLayout>
 </RelativeLayout>

@@ -88,7 +88,7 @@ public class ItemView extends AppCompatActivity {
         if(foodItemList.size() > 0)
         {
             final ProgressDialog dialog = new ProgressDialog(ItemView.this);
-            dialog.setMessage("Sending To Kitchen...");
+            dialog.setMessage("Sending to lobby ...");
             dialog.show();
             boolean check=false;
             for( FoodItem t:foodItemList)

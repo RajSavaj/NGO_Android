@@ -18,6 +18,7 @@ import org.foodmanoeuvre.Adapter.RestorentItemAdapter;
 import org.foodmanoeuvre.modal.FoodItem;
 import org.foodmanoeuvre.modal.Restorent;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -40,7 +41,7 @@ public class Ngo extends AppCompatActivity {
     RecyclerView recycleritem;
     List<Restorent> restorentList;
     RestorentItemAdapter restorentItemAdapter;
-    ImageView noti;
+    ImageView noti,logout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,7 @@ public class Ngo extends AppCompatActivity {
         profileimg=findViewById(R.id.profile_image);
         textname=findViewById(R.id.name);
         noti=findViewById(R.id.notification);
+        logout=findViewById(R.id.logout);
         noti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,6 +57,7 @@ public class Ngo extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
         session=new SessionManagement(Ngo.this);
         map=session.getUserDetails();
         Picasso.with(Ngo.this)
@@ -66,6 +69,13 @@ public class Ngo extends AppCompatActivity {
         recycleritem=findViewById(R.id.recitem);
         recycleritem.setLayoutManager(new LinearLayoutManager(this));
         getTodayRes();
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                session.logoutUser();
+            }
+        });
+
     }
 
     private void getTodayRes() {
@@ -75,7 +85,7 @@ public class Ngo extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         API api = retrofit.create(API.class);
-        Call<List<Restorent>> call=api.getRestaurants();
+        Call<List<Restorent>> call=api.getRestaurants(map.get("latt"),map.get("lang"));
         call.enqueue(new Callback<List<Restorent>>() {
             @Override
             public void onResponse(Call<List<Restorent>> call, Response<List<Restorent>> response) {

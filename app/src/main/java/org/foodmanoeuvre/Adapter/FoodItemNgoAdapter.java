@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -67,6 +68,7 @@ public class FoodItemNgoAdapter extends RecyclerView.Adapter<FoodItemNgoAdapter.
             txtname=v.findViewById(R.id.itemname);
             txttime=v.findViewById(R.id.itemtime);
             qty=(EditText) v.findViewById(R.id.itemqty);
+            qty.setSelection(qty.getText().length());
             qty.addTextChangedListener(this);
         }
 
@@ -84,6 +86,7 @@ public class FoodItemNgoAdapter extends RecyclerView.Adapter<FoodItemNgoAdapter.
                 if(qty.getText().toString().equals(""))
                 {
                     qty.setText("0");
+                    qty.setSelection(qty.getText().length());
                 }
                 else
                 {
@@ -94,7 +97,9 @@ public class FoodItemNgoAdapter extends RecyclerView.Adapter<FoodItemNgoAdapter.
                     }
                     else
                     {
+                        Toast.makeText(context, "Only "+iqty.get(position)+" Quantity are left", Toast.LENGTH_SHORT).show();
                         qty.setText("0");
+                        qty.setSelection(qty.getText().length());
                     }
                 }
 

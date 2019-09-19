@@ -72,7 +72,7 @@ public class NgoHistoryAdapter extends  RecyclerView.Adapter<NgoHistoryAdapter.V
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         CircleImageView imageView;
-        TextView txtqty,txtitename,txtngoname,status;
+        TextView txtqty,txtitename,txtngoname,status,ptime;
         LinearLayout linearLayout;
 
         public ViewHolder(@NonNull View v) {
@@ -85,6 +85,7 @@ public class NgoHistoryAdapter extends  RecyclerView.Adapter<NgoHistoryAdapter.V
             status=v.findViewById(R.id.status);
             linearLayout.setVisibility(View.GONE);
             status.setVisibility(View.VISIBLE);
+
         }
     }
 }

@@ -99,7 +99,7 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHo
                 LayoutInflater li = LayoutInflater.from(context);
                 View promptsView = li.inflate(R.layout.prompt, null);
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
-                        context);
+                        context,R.style.AlertDialogTheme);
                 alertDialogBuilder.setView(promptsView);
                 final EditText userInput = (EditText) promptsView
                         .findViewById(R.id.editTextDialogUserInput);
@@ -129,10 +129,10 @@ public class FoodItemAdapter extends RecyclerView.Adapter<FoodItemAdapter.ViewHo
                 dialogBuilder
                         .withTitle("Delete Item")                                  //.withTitle(null)  no title
                         .withTitleColor("#FFFFFF")                                  //def
-                        .withDividerColor("#04c10d")                                //def
+                        .withDividerColor("#333366")                                //def
                         .withMessage("Are You Sure Want To Delete Item?")                     //.withMessage(null)  no Msg
                         .withMessageColor("#FFFFFFFF")                              //def  | withMessageColor(int resid)
-                        .withDialogColor("#9B4351")
+                        .withDialogColor("#ff8000")
                         .isCancelableOnTouchOutside(true)                           //def    | isCancelable(true)
                         .withDuration(700)                                          //def
                         .withEffect(Effectstype.SlideBottom)                                         //def Effectstype.Slidetop

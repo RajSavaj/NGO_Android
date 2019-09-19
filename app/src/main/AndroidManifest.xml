@@ -28,7 +28,7 @@
         <activity
             android:name=".Ngo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Register" />
+        <activity android:name=".Register" android:theme="@style/AppTheme.NoActionBar"  />
         <activity android:name=".Login"/>
         <activity
             android:name=".FoodArea"
@@ -36,7 +36,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyA5TF-_QLQzRWmOqf_rSmmFtQ7RF41OB_U" />
+            android:value="AIzaSyAY0nW0RJ97K4iiYMqxIgy5UeooE-Cao_M" />
     </application>
 
 </manifest>

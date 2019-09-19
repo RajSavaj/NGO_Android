@@ -19,14 +19,18 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.NavUtils;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -66,20 +70,25 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        setTitle(null);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        TextView t1=findViewById(R.id.toolbar_title);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         Bundle b=getIntent().getExtras();
         initcontroll();
         requestPermission();
         if(b.getString("type","res").equals("res"))
         {
             type="res";
-            getSupportActionBar().setTitle("FoodArea Registration");
+            t1.setText("FoodArea Registration");
         }
         else
         {
             txtomno.setVisibility(View.GONE);
             txtoname.setVisibility(View.GONE);
             type="ngo";
-            getSupportActionBar().setTitle("NGO Registration");
+            t1.setText("ngo Registration");
         }
         int perwrite= ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
         if(perwrite==PackageManager.PERMISSION_GRANTED)
@@ -89,11 +98,17 @@ public class Register extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK,
-                        MediaStore.Images.Media.INTERNAL_CONTENT_URI);
-                intent.setType("image/*");
-                intent.putExtra("return-data", true);
-                startActivityForResult(intent, 200);
+                Intent getIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                getIntent.setType("image/*");
+
+
+                Intent pickIntent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                pickIntent.setType("image/*");
+
+                Intent chooserIntent = Intent.createChooser(getIntent, "Select Image");
+                chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] {pickIntent});
+
+                startActivityForResult(Intent.createChooser(chooserIntent, "Select Picture"), 200);
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
@@ -116,7 +131,7 @@ public class Register extends AppCompatActivity {
         txtomno=findViewById(R.id.txtomno);
         txtweburl=findViewById(R.id.txturl);
         txtpass=findViewById(R.id.txtpass);
-        txtadd=findViewById(R.id.txtpass);
+        txtadd=findViewById(R.id.txtadd);
         profile=findViewById(R.id.profile);
         register=findViewById(R.id.btnreg);
     }
@@ -263,6 +278,7 @@ public class Register extends AppCompatActivity {
                         public void onClick(DialogInterface dialog, int id) {
                             Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
                             startActivityForResult(intent,100);
+                            finish();
                         }
                     })
                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -369,4 +385,19 @@ public class Register extends AppCompatActivity {
         public void onStatusChanged(String provider, int status, Bundle extras){}
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }
